@@ -1,2 +1,10 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@import "@heroui/styles"; 
+
+:root {
+	--primary-color: #05893E;
+}
+.button-primary{
+    background-color: var(--primary-color);
+}
