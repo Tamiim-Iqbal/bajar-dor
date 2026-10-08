@@ -43,7 +43,6 @@ const Header = () => {
         <hr className="border-t border-gray-200"></hr>
         <NavLinks />
         <hr className="border-t border-gray-200"></hr>
-
         </header>
     );
 };

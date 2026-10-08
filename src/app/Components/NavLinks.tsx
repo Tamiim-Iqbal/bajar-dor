@@ -5,6 +5,7 @@ interface Category {
     id: number;
     nameBn: string;
     icon: string;
+    slug: string;
 }
 
 const NavLinks = async () => {
@@ -14,20 +15,24 @@ const NavLinks = async () => {
         }
     );
     const categories: Category[] = await response.json();
-    console.log(categories);
+    // console.log(categories);
     return (
-        <div className="w-10/12 mx-auto items-center flex py-4">
-            <div className="flex gap-8 font-semibold text-sm">
-                {categories.map((category) => (
-                    <Link key={category.id} href="/">
-                        <div className="flex items-center">
-                            <span>{category.icon}</span>
-                            <span className="ml-2">{category.nameBn}</span>
-                        </div>
-                    </Link>
-                ))}
-            </div>
+        <div className="w-10/12 mx-auto">
+            <div className="ml-5 py-1">
+                <div className="flex font-semibold text-sm">
+                    {categories.map((cat) => (
+                        <Link key={cat.id} href={`/category/${cat.slug}`}>
+                            <div className="flex items-center py-2 px-4 border border-transparent hover:border-gray-300 hover:bg-gray-200 rounded-lg">
+                                <span>{cat.icon}</span>
+                                <span className="ml-2">{cat.nameBn}</span>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
         </div>
+
+        </div>
+        
     );
 };
 
