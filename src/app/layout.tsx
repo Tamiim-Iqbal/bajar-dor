@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Hind_Siliguri } from "next/font/google";
+import { Hind_Siliguri, Noto_Sans_Bengali} from "next/font/google";
 import "./globals.css";
 import Header from "./Components/Header";
 import Marquee from "./Components/Marquee";
@@ -7,6 +7,13 @@ import Marquee from "./Components/Marquee";
 const hindSiliguri = Hind_Siliguri({
   subsets: ["bengali"],
   weight: ["400", "500", "600", "700"],
+  variable: "--font-hind-siliguri",
+});
+
+const notoSansBengali = Noto_Sans_Bengali({
+  subsets: ["bengali"],
+  variable: "--font-noto-sans-bengali",
+  display: "swap",
 });
 
 
@@ -20,7 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-theme="light"
-      className={`${hindSiliguri.className} h-full antialiased`}
+      className={`${hindSiliguri.className} ${notoSansBengali.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <div>

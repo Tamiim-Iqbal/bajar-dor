@@ -2,6 +2,11 @@
 @plugin "daisyui";
 @import "@heroui/styles";
 
+@theme inline {
+    --font-hind: var(--font-hind-siliguri);
+    --font-noto: var(--font-noto-sans-bengali);
+}
+
 .button-primary {
     background-color: #05893E;
 }
@@ -15,5 +20,6 @@
 }
 
 .primary-bg-color {
-    background-color: #E8F5EC;
+    background-color: #F0FDF4;
+    /* background-color: #E8F5EC; */
 }

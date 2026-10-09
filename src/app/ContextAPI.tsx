@@ -4,3 +4,22 @@ export const getBanglaDate = () => {
     });
 };
 
+export const toBanglaNumber = (number: number) => {
+    return number.toString().replace(/\d/g, (digit) => 
+        "০১২৩৪৫৬৭৮৯"[Number(digit)]
+    );
+};
+
+export interface Product {
+    id: number;
+    nameBn: string;
+    today: number;
+    category: string;
+    image: string;
+    length: number;
+    products: Product[];
+    change: {
+        dir: "up" | "down";
+        pct: number;
+    };
+}

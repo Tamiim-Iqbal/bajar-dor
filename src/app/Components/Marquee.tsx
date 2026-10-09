@@ -2,6 +2,8 @@ import React from 'react';
 import MarqueeText from "react-marquee-text"
 import "react-marquee-text/dist/styles.css"
 
+import { toBanglaNumber } from '../ContextAPI';
+
 interface Headline {
     id: number;
     nameBn: string;
@@ -13,11 +15,6 @@ interface Headline {
     };
 }
 
-const toBanglaNumber = (number: number) => {
-    return number.toString().replace(/\d/g, (digit) => 
-        "০১২৩৪৫৬৭৮৯"[Number(digit)]
-    );
-};
 
 const Marquee = async () => {
     const response = await fetch('https://api.api-store.workers.dev/api/bazardor/products',
@@ -39,12 +36,12 @@ const Marquee = async () => {
                     {
                         headline.change.dir === "up"? <div>
                             <span className="text-green-600 ml-2">▲</span>
-                            <span className="text-green-600 font-medium">{toBanglaNumber(headline.change.pct)}%</span>
+                            <span className="text-green-600 font-medium font-noto">{toBanglaNumber(headline.change.pct)}%</span>
                         </div> 
                         : 
                         <div>
                             <span className="text-red-600 ml-2">▼</span>
-                            <span className="text-red-600 font-medium">{toBanglaNumber(Math.abs(headline.change.pct))}%</span>
+                            <span className="text-red-600 font-medium font-noto">{toBanglaNumber(Math.abs(headline.change.pct))}%</span>
                         </div>
                     }
                     
