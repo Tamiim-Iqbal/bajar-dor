@@ -29,7 +29,7 @@ export const getBanglaDate = () => {
     });
 };
 
-export const toBanglaNumber = (number: number) => {
+export const toBanglaNumber = (number: number | string) => {
     return number.toString().replace(/\d/g, (digit) => 
         "০১২৩৪৫৬৭৮৯"[Number(digit)]
     );

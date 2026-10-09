@@ -1,6 +1,8 @@
 import React, { Suspense } from "react";
 import { Product, toBanglaNumber, toBanglaUnit } from "../../ContextAPI";
 import Link from "next/link";
+import { Table } from '@heroui/react';
+import { Button } from "@heroui/react";
 
 type PageProps = {
     params: Promise<{ productId: string; }>;
@@ -52,11 +54,15 @@ const DetailsContent = async ({ params }: PageProps) => {
             0
         ) / data.markets.length;
 
+    const tableData = data.markets;
+    tableData.sort((a, b) => a.min - b.min);
+    console.log(tableData);
+
     return (
         <div className="w-10/12 mx-auto mt-6 mb-10">
             {/* Bread crumbs */}
             <div className="mb-6">
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 text-sm font-medium">
                     <Link href="/" className="hover:underline">হোম</Link>
                     <span className="mx-3">{`>`}</span>
                     <Link href={`/category/${data.category}`} className="hover:underline">{data.categoryNameBn}</Link>
@@ -75,8 +81,8 @@ const DetailsContent = async ({ params }: PageProps) => {
                     </div>
                     <div>
                         <h3 className="font-noto text-3xl font-semibold">{data.nameBn}</h3>
-                        <p className="font-noto text-gray-500 text-sm">প্রতি {toBanglaUnit(data.unit)}・{data.categoryNameBn}</p>
-                        <p className=" text-gray-500 mt-1 font-noto text-sm">
+                        <p className="font-noto text-gray-600 text-sm">প্রতি {toBanglaUnit(data.unit)}・{data.categoryNameBn}</p>
+                        <div className=" text-gray-500 mt-1 font-noto text-sm">
                             {
                                 data.change.dir === "up" ?
                                     <div>
@@ -84,21 +90,21 @@ const DetailsContent = async ({ params }: PageProps) => {
                                         <span className="font-noto">{toBanglaNumber(data.change.pct)}%</span>
                                     </div>
                                     :
-                                    <div>
-                                        কমেছে {Math.abs(data.change.pct)}
+                                    <div>গতকালের তুলনায় আজ দাম <span className="font-semibold">কমেছে </span>
+                                        <span className="font-noto">{toBanglaNumber(Math.abs(data.change.pct))}%</span>
                                     </div>
                             }
-                        </p>
+                        </div>
                     </div>
                 </div>
 
                 {/* Right: Price & PCT */}
                 <div className="bg-[#f0f5f0]  p-5 rounded-2xl">
                     <div className="flex flex-col items-center">
-                        <h2 className="text-gray-500 text-sm">আজকের দাম</h2>
+                        <h2 className="text-gray-600 text-sm">আজকের দাম</h2>
                         <h1 className="text-3xl font-semibold font-noto">{toBanglaNumber(data.today)}</h1>
-                        <p className="text-gray-500 text-sm">টাকা / {toBanglaUnit(data.unit)}</p>
-                        <p className="text-sm">
+                        <p className="text-gray-600 text-sm">টাকা / {toBanglaUnit(data.unit)}</p>
+                        <div className="text-sm">
                             {
                                 data.change.dir === "up" ?
                                     <div className="text-red-600 font-medium font-noto">
@@ -109,69 +115,107 @@ const DetailsContent = async ({ params }: PageProps) => {
                                         ▼ {toBanglaNumber(Math.abs(data.change.pct))}%
                                     </div>
                             }
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
 
             {/* Details Content */}
-            <div className="bg-white border border-gray-200 p-5 rounded-2xl mt-7">
+            <div className="bg-white border border-gray-200 p-6 rounded-3xl mt-7">
                 {/* Card */}
                 <h1 className="text-lg font-medium font-noto mt-1">দামের সারসংক্ষেপ</h1>
                 <div className="mt-3">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                         {/* Minimum Price */}
                         <div className="border border-gray-200 py-4 px-6 rounded-2xl font-noto">
-                            <p className="text-xs text-gray-500">সর্বনিম্ন দাম</p>
+                            <p className="text-xs text-gray-600 font-medium">সর্বনিম্ন দাম</p>
                             <p className="text-green-600">
                                 <span className="text-2xl font-bold">
                                     {toBanglaNumber(minPrice)}
                                 </span>
                                 <span className="text-sm font-medium"> টাকা</span>
                             </p>
-                            <p className="text-xs text-gray-500">
+                            <p className="text-xs text-gray-600">
                                 সবচেয়ে কম দামের বাজার
                             </p>
                         </div>
 
                         {/* Maximum Price */}
                         <div className="border border-gray-200 py-4 px-6 rounded-2xl font-noto">
-                            <p className="text-xs text-gray-500">সর্বোচ্চ দাম</p>
+                            <p className="text-xs text-gray-600 font-medium">সর্বোচ্চ দাম</p>
                             <p className="text-red-600">
                                 <span className="text-2xl font-bold">
                                     {toBanglaNumber(maxPrice)}
                                 </span>
                                 <span className="text-sm font-medium"> টাকা</span>
                             </p>
-                            <p className="text-xs text-gray-500">
+                            <p className="text-xs text-gray-600">
                                 সবচেয়ে বেশি দামের বাজার
                             </p>
                         </div>
 
                         {/* Average Price */}
                         <div className="border border-gray-200 py-4 px-6 rounded-2xl font-noto">
-                            <p className="text-xs text-gray-500">গড় দাম</p>
+                            <p className="text-xs text-gray-600 font-medium">গড় দাম</p>
                             <p className="text-orange-400">
                                 <span className="text-2xl font-bold">
                                     {toBanglaNumber(Math.round(avgPrice))}
                                 </span>
                                 <span className="text-sm font-medium"> টাকা</span>
                             </p>
-                            <p className="text-xs text-gray-500">
+                            <p className="text-xs text-gray-600">
                                 প্রতি {toBanglaUnit(data.unit)}-এর হিসাবে
                             </p>
                         </div>
                     </div>
                 </div>
                 {/* Table */}
-                <h1 className="text-lg font-medium font-noto mt-5">বাজারভিত্তিক আজকের দাম</h1>
-                <div>
-                    
+                <h1 className="text-lg font-medium font-noto mt-6">বাজারভিত্তিক আজকের দাম</h1>
+                <div className="mt-3">
+                    <Table variant="secondary" className="border border-gray-200 rounded-2xl">
+                        <Table.ScrollContainer>
+                            <Table.Content aria-label="Team members">
+                                <Table.Header className="font-noto">
+                                    <Table.Column isRowHeader className="text-sm font-semibold text-black">বাজার</Table.Column>
+                                    <Table.Column className="text-sm font-semibold text-black">বিভাগ</Table.Column>
+                                    <Table.Column className="text-sm font-semibold text-black">সর্বনিম্ন</Table.Column>
+                                    <Table.Column className="text-sm font-semibold text-black">সর্বাধিক</Table.Column>
+                                    <Table.Column className="text-sm font-semibold text-black">গড়</Table.Column>
+                                </Table.Header>
+                                <Table.Body className="font-noto">
+                                    {
+                                        tableData.map((market, index) => (
+                                            <Table.Row key={index}>
+                                                <Table.Cell className="font-medium">{market.market}</Table.Cell>
+                                                <Table.Cell className="">{market.division}</Table.Cell>
+                                                <Table.Cell className=""> {toBanglaNumber(market.min)} টাকা</Table.Cell>
+                                                <Table.Cell className=""> {toBanglaNumber(market.max)} টাকা</Table.Cell>
+                                                <Table.Cell className="font-medium">
+                                                    {toBanglaNumber(((market.max + market.min) / 2).toFixed(2))} টাকা
+                                                </Table.Cell>
+                                            </Table.Row>
+                                        ))
+                                    }
+
+                                </Table.Body>
+                            </Table.Content>
+                        </Table.ScrollContainer>
+                    </Table>
                 </div>
-                
+
                 <div>
 
                 </div>
+            </div>
+            
+            {/* Button */}
+            <div className="mt-5 ml-3 flex">
+                <Link href={`/category/${data.category}`}>
+                    <div className='btn bg-transparent border border-transparent py-5 px-4 text-gray-600 font-noto hover:bg-gray-200 hover:border-gray-300 rounded-lg'>
+                        <span>{data.categoryIcon}</span>
+                        <span className="font-medium">সব {data.categoryNameBn}</span>
+                    </div>
+                </Link>
             </div>
         </div>
 
