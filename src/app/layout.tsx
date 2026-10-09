@@ -31,10 +31,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${hindSiliguri.className} ${notoSansBengali.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <div>
-          <Header />
-          <Marquee />
-        </div>
+        <Header />
+        <Marquee />
         <div>
           {children}
         </div>

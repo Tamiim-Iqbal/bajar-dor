@@ -9,7 +9,7 @@ const date = getBanglaDate();
 const Header = () => {
 
     return (
-        <header>
+        <header className="sticky top-0 z-1 bg-white">
             <div className="w-10/12 mx-auto justify-center items-center flex pt-4 pb-2">
                 {/* Logo & Brand Name */}
                 <div className="navbar-start">
