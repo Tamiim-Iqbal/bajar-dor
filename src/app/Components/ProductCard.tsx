@@ -4,7 +4,7 @@ import { toBanglaNumber } from '../ContextAPI';
 
 const ProductCard = ({ product }: { product: Product }) => {
     return (
-        <div className="bg-white border border-gray-200 p-4 rounded-xl">
+        <div className="bg-white border border-gray-200 p-4 rounded-2xl">
             {/* Image & Name */}
             <div className="flex gap-3 items-center">
                 <div>

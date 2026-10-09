@@ -22,4 +22,7 @@ export interface Product {
         dir: "up" | "down";
         pct: number;
     };
+    categoryNameBn: string;
+    categoryId: string;
+    categoryIcon: string;
 }

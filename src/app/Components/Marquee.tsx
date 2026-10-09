@@ -26,7 +26,7 @@ const Marquee = async () => {
     // console.log(headlines);
     // const {image, nameBn, today, change:{dir, pct}} = headlines;
     return (
-        <div className="">
+        <div className="bg-white">
             <MarqueeText className="" direction="right" pauseOnHover={true} duration={8} >
             {
                 headlines.map(headline => <span key={headline.id} className="flex items-center justify-center border border-l-0 border-t-0 border-gray-100 py-1 px-8">
