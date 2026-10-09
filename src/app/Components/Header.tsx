@@ -24,7 +24,7 @@ const Header = () => {
                                 />
                             </div>
                             <div className="flex flex-col">
-                                <h1 className="text-xl font-bold"> বাজার দর </h1>
+                                <h1 className="text-xl font-bold font-noto"> বাজার দর </h1>
                                 <p className="font-noto text-sm text-gray-500">{date}</p>
                             </div>
                         </div>

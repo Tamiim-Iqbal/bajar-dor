@@ -31,8 +31,8 @@ const Marquee = async () => {
             {
                 headlines.map(headline => <span key={headline.id} className="flex items-center justify-center border border-l-0 border-t-0 border-gray-100 py-1 px-8">
                     <span>{headline.image}</span>
-                    <span className="font-semibold ml-2">{headline.nameBn}</span>
-                    <span className="ml-2">{toBanglaNumber(headline.today)}/কেজি</span>
+                    <span className="font-noto font-semibold ml-2">{headline.nameBn}</span>
+                    <span className="font-noto ml-2">{toBanglaNumber(headline.today)}/কেজি</span>
                     {
                         headline.change.dir === "up"? <div>
                             <span className="text-red-600 ml-2">▲</span>

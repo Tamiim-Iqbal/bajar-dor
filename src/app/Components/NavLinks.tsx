@@ -24,7 +24,7 @@ const NavLinks = async () => {
                         <Link key={cat.id} href={`/category/${cat.slug}`}>
                             <div className="flex items-center py-2 px-4 border border-transparent hover:border-gray-300 hover:bg-gray-200 rounded-lg">
                                 <span>{cat.icon}</span>
-                                <span className="ml-2">{cat.nameBn}</span>
+                                <span className="font-noto ml-2">{cat.nameBn}</span>
                             </div>
                         </Link>
                     ))}
