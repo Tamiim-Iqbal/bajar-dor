@@ -1,9 +1,11 @@
 import React from 'react';
-import { Product } from '../ContextAPI';
+import { Product, toBanglaUnit } from '../ContextAPI';
 import { toBanglaNumber } from '../ContextAPI';
+import Link from 'next/link';
 
 const ProductCard = ({ product }: { product: Product }) => {
     return (
+        <Link href={`/product/${product.slug}`}>
         <div className="bg-white border border-gray-200 p-4 rounded-2xl">
             {/* Image & Name */}
             <div className="flex gap-3 items-center">
@@ -11,8 +13,8 @@ const ProductCard = ({ product }: { product: Product }) => {
                     <span className="bg-[#f0f5f0] text-xl px-3 py-1 rounded-xl">{product.image}</span>
                 </div>
                 <div>
-                    <h3 className="font-noto text-lg font-semibold">{product.nameBn}</h3>
-                    <p className="font-noto text-gray-500 text-xs">প্রতি কেজি</p>
+                    <h3 className="font-noto text-lg font-medium">{product.nameBn}</h3>
+                    <p className="font-noto text-gray-500 text-xs">প্রতি {toBanglaUnit(product.unit)}</p>
                 </div>
             </div>
 
@@ -20,7 +22,7 @@ const ProductCard = ({ product }: { product: Product }) => {
             {/* Price & PCT */}
             <div className="flex items-center justify-between">
                 <div>
-                    <h2 className="font-noto"><span className="text-xl font-semibold mr-1">{toBanglaNumber(product.today)}</span>টাকা</h2>
+                    <h2 className="font-noto"><span className="text-xl font-medium mr-1">{toBanglaNumber(product.today)}</span>টাকা</h2>
                 </div>
                 <div className="text-xs bg-[#f0f5f0] px-2 py-1 font-semibold rounded-xl">
                     {
@@ -37,6 +39,8 @@ const ProductCard = ({ product }: { product: Product }) => {
                 </div>
             </div>
         </div>
+        
+        </Link>
     );
 };
 

@@ -30,10 +30,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-theme="light"
       className={`${hindSiliguri.className} ${notoSansBengali.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#f0f5f0]">
+      <body className="min-h-screen flex flex-col bg-[#f0f5f0]">
         <Header />
         <Marquee />
-        <div>
+        <div className="flex-1">
           {children}
         </div>
         <Footer />

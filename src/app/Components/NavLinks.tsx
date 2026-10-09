@@ -19,7 +19,7 @@ const NavLinks = async () => {
     return (
         <div className="w-10/12 mx-auto">
             <div className="ml-5 py-1">
-                <div className="flex font-semibold text-sm">
+                <div className="flex font-medium text-sm">
                     {categories.map((cat) => (
                         <Link key={cat.id} href={`/category/${cat.slug}`}>
                             <div className="flex items-center py-2 px-4 border border-transparent hover:border-gray-300 hover:bg-gray-200 rounded-lg">
