@@ -25,13 +25,13 @@ const ProductCard = ({ product }: { product: Product }) => {
                 <div className="text-xs bg-[#f0f5f0] px-2 py-1 font-semibold rounded-xl">
                     {
                         product.change.dir === "up" ? <div>
-                            <span className="text-green-600">▲</span>
-                            <span className="text-green-600 font-noto ml-1">{toBanglaNumber(product.change.pct)}%</span>
+                            <span className="text-red-600">▲</span>
+                            <span className="text-red-600 font-noto ml-1">{toBanglaNumber(product.change.pct)}%</span>
                         </div>
                         :
                         <div>
-                            <span className="text-red-600">▼</span>
-                            <span className="text-red-600 font-noto ml-1">{toBanglaNumber(Math.abs(product.change.pct))}%</span>
+                            <span className="text-green-600">▼</span>
+                            <span className="text-green-600 font-noto ml-1">{toBanglaNumber(Math.abs(product.change.pct))}%</span>
                         </div>
                     }
                 </div>

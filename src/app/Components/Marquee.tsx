@@ -35,13 +35,13 @@ const Marquee = async () => {
                     <span className="ml-2">{toBanglaNumber(headline.today)}/কেজি</span>
                     {
                         headline.change.dir === "up"? <div>
-                            <span className="text-green-600 ml-2">▲</span>
-                            <span className="text-green-600 font-medium font-noto">{toBanglaNumber(headline.change.pct)}%</span>
+                            <span className="text-red-600 ml-2">▲</span>
+                            <span className="text-red-600 font-medium font-noto">{toBanglaNumber(headline.change.pct)}%</span>
                         </div> 
                         : 
                         <div>
-                            <span className="text-red-600 ml-2">▼</span>
-                            <span className="text-red-600 font-medium font-noto">{toBanglaNumber(Math.abs(headline.change.pct))}%</span>
+                            <span className="text-green-600 ml-2">▼</span>
+                            <span className="text-green-600 font-medium font-noto">{toBanglaNumber(Math.abs(headline.change.pct))}%</span>
                         </div>
                     }
                     

@@ -11,7 +11,7 @@ const AllProducts = async() => {
         }
     );
     const data: Product[] = await response.json();
-    console.log(data);
+    // console.log(data);
 
     return (
         <div id="সব-পণ্য" className="mt-10">
@@ -19,7 +19,7 @@ const AllProducts = async() => {
                 <h2 className="text-xl font-semibold">সব পণ্য</h2>
                 <p className="text-gray-500 mt-2">মোট {toBanglaNumber(data.length)}টি পণ্য দেখানো হচ্ছে</p>
             </div>
-            <div className="grid grid-cols-3 mt-2 gap-5">
+            <div className="grid grid-cols-3 mt-4 gap-5">
             {
                 data.map(product => <ProductCard key={product.id} product={product} />)
             }
