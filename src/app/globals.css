@@ -7,5 +7,13 @@
 }
 
 .button-primary:hover {
-    background-color: #068e41;
+    background-color: #047A36;
+}
+
+.primary-color {
+    color: #05893E;
+}
+
+.primary-bg-color {
+    background-color: #E8F5EC;
 }

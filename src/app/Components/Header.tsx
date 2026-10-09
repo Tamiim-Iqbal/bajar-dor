@@ -2,10 +2,9 @@ import Image from 'next/image';
 import React from 'react';
 import Link from 'next/link';
 import NavLinks from './NavLinks';
+import { getBanglaDate } from '../ContextAPI';
 
-const date = new Date().toLocaleDateString('bn-BD', {
-    dateStyle: 'full',
-});
+const date = getBanglaDate();
 
 const Header = () => {
 
@@ -34,9 +33,9 @@ const Header = () => {
 
                 {/* Buttons */}
                 <div className="navbar-end">
-                    <div className="flex gap-3">
-                        <button className="btn border-transparent bg-white hover:border-gray-300 hover:bg-gray-200 font-semibold rounded-lg">সাইন ইন</button>
-                        <button className="btn button-primary hover:bg-button-primary text-white font-semibold px-4 rounded-lg">সাইন আপ</button>
+                    <div className="flex gap-2">
+                        <button className="btn border-transparent bg-white hover:border-gray-300 hover:bg-gray-200 font-semibold rounded-lg px-5">সাইন ইন</button>
+                        <button className="btn button-primary hover:bg-button-primary text-white font-semibold px-5 rounded-lg">সাইন আপ</button>
                     </div>
                 </div>
             </div>
