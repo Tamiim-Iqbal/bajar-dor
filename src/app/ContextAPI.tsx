@@ -23,7 +23,7 @@ export interface Product {
     }[]
 }
 
-export const getBanglaDate = (date: Date = new Date()) => {
+export const getBanglaDate = (date: Date) => {
     return date.toLocaleDateString("bn-BD", {
         dateStyle: "full",
         timeZone: "Asia/Dhaka",

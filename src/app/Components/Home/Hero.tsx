@@ -1,10 +1,9 @@
 
 import React from 'react';
-import { getBanglaDate } from '../../ContextAPI';
 import Image from 'next/image';
 import Link from 'next/link';
-
-const date = getBanglaDate();
+import { Suspense } from "react";
+import BanglaDate from "../BanglaDate";
 
 const Hero = () => {
     return (
@@ -15,7 +14,9 @@ const Hero = () => {
                 <div className="py-7 px-5 sm:py-8 sm:px-7 lg:py-10 lg:px-8">
 
                     <span className="inline-block font-noto text-xs sm:text-sm py-1 px-3 sm:px-4 rounded-full font-medium primary-color primary-bg-color">
-                        {date}
+                        <Suspense fallback={<span>তারিখ লোড হচ্ছে...</span>}>
+                            <BanglaDate />
+                        </Suspense>
                     </span>
 
                     <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mt-4 sm:mt-5 leading-snug">

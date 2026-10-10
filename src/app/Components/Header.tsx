@@ -1,8 +1,6 @@
 import Image from 'next/image';
-import React from 'react';
 import Link from 'next/link';
 import NavLinks from './NavLinks';
-import { getBanglaDate } from '../ContextAPI';
 import Marquee from './Marquee';
 import { Suspense } from "react";
 import BanglaDate from './BanglaDate';
@@ -16,7 +14,9 @@ interface Category {
 
 const Header = async () => {
     const response = await fetch(
-        'https://openapi.programming-hero.com/api/bazardor/categories');
+        'https://openapi.programming-hero.com/api/bazardor/categories', {
+        cache: "force-cache"
+    });
 
     const categories: Category[] = await response.json();
 
@@ -44,11 +44,11 @@ const Header = async () => {
                                     বাজার দর
                                 </h1>
 
-                                <p className="font-noto text-[10px] sm:text-sm text-gray-500 whitespace-nowrap">
-                                    <Suspense fallback={<p className="text-xs text-gray-500">...</p>}>
+                                <h3 className="font-noto text-[10px] sm:text-sm text-gray-500 whitespace-nowrap">
+                                    <Suspense fallback={<p className="text-xs text-gray-500">তারিখ লোড হচ্ছে...</p>}>
                                         <BanglaDate />
                                     </Suspense>
-                                </p>
+                                </h3>
                             </div>
                         </div>
                     </Link>
