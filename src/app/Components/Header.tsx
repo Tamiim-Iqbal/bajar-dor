@@ -4,6 +4,8 @@ import Link from 'next/link';
 import NavLinks from './NavLinks';
 import { getBanglaDate } from '../ContextAPI';
 import Marquee from './Marquee';
+import { Suspense } from "react";
+import BanglaDate from './BanglaDate';
 
 interface Category {
     id: number;
@@ -12,11 +14,9 @@ interface Category {
     slug: string;
 }
 
-const date = getBanglaDate();
-
 const Header = async () => {
     const response = await fetch(
-        'https://openapi.programming-hero.com/api/bazardor/categories' );
+        'https://openapi.programming-hero.com/api/bazardor/categories');
 
     const categories: Category[] = await response.json();
 
@@ -45,7 +45,9 @@ const Header = async () => {
                                 </h1>
 
                                 <p className="font-noto text-[10px] sm:text-sm text-gray-500 whitespace-nowrap">
-                                    {date}
+                                    <Suspense fallback={<p className="text-xs text-gray-500">...</p>}>
+                                        <BanglaDate />
+                                    </Suspense>
                                 </p>
                             </div>
                         </div>

@@ -20,7 +20,7 @@ const ProductCard = ({ product }: { product: Product }) => {
                     </div>
 
                     <div className="min-w-0">
-                        <h3 className="font-noto text-base sm:text-lg font-medium leading-snug break-words">
+                        <h3 className="font-noto text-base sm:text-lg font-medium leading-snug">
                             {product.nameBn}
                         </h3>
 
