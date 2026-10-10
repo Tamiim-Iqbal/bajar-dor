@@ -62,6 +62,26 @@ const Marquee = async () => {
                 ))}
             </MarqueeText>
         </div>
+        // <div className="bg-white w-full overflow-hidden">
+        //     <div className="flex w-max animate-marquee">
+        //         {headlines.map((headline) => (
+        //             <span
+        //                 key={headline.id}
+        //                 className="inline-flex shrink-0 items-center whitespace-nowrap border border-l-0 border-gray-100 py-2 px-3 sm:px-5 lg:px-8"
+        //             >
+        //                 <span>{headline.image}</span>
+
+        //                 <span className="font-noto font-medium text-xs sm:text-sm lg:text-base ml-2">
+        //                     {headline.nameBn}
+        //                 </span>
+
+        //                 <span className="font-noto text-xs sm:text-sm lg:text-base ml-2">
+        //                     {toBanglaNumber(headline.today)}/{toBanglaUnit(headline.unit)}
+        //                 </span>
+        //             </span>
+        //         ))}
+        //     </div>
+        // </div>
     );
 };
 
