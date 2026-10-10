@@ -1,5 +1,8 @@
+'use client';
+
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
+import { Menu, X } from 'lucide-react';
 
 interface Category {
     id: number;
@@ -8,32 +11,90 @@ interface Category {
     slug: string;
 }
 
-const NavLinks = async () => {
-    const response = await fetch('https://api.api-store.workers.dev/api/bazardor/categories',
-        {
-            cache: 'force-cache',
-        }
-    );
-    const categories: Category[] = await response.json();
-    // console.log(categories);
-    return (
-        <div className="w-10/12 mx-auto">
-            <div className="ml-5 py-1">
-                <div className="flex font-medium text-sm">
-                    {categories.map((cat) => (
-                        <Link key={cat.id} href={`/category/${cat.slug}`}>
-                            <div className="flex items-center py-2 px-4 border border-transparent hover:border-gray-300 hover:bg-gray-200 rounded-lg">
-                                <span>{cat.icon}</span>
-                                <span className="font-noto ml-2">{cat.nameBn}</span>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
-        </div>
+interface NavLinksProps {
+    categories: Category[];
+}
 
-        </div>
-        
+const NavLinks = ({ categories }: NavLinksProps) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+        <nav className="relative w-auto md:w-full bg-white">
+
+            {/* Mobile Hamburger */}
+            <div className="md:hidden">
+                <button
+                    type="button"
+                    onClick={() => setIsOpen((prev) => !prev)}
+                    aria-label={isOpen ? 'মেনু বন্ধ করুন' : 'মেনু খুলুন'}
+                    aria-expanded={isOpen}
+                    className="flex items-center justify-center p-2 ml-1 hover:bg-gray-100 border-r border-gray-200 text-gray-600"
+                >
+                    {isOpen ? (
+                        <X size={24} />
+                    ) : (
+                        <Menu size={24} />
+                    )}
+                </button>
+
+                {/* Floating Category Menu */}
+                {isOpen && (
+                    <div className="absolute ml-2 top-full left-0 z-1 w-64 max-w-[85vw] bg-white border border-gray-200 rounded-xl shadow-xl p-2">
+
+                        <p className="font-noto text-sm font-semibold text-gray-500 px-3 py-2">
+                            পণ্যের বিভাগ
+                        </p>
+
+                        <div className="max-h-[65vh] overflow-y-auto grid grid-cols-2 gap-1">
+                            {categories.map((cat) => (
+                                <Link
+                                    key={cat.id}
+                                    href={`/category/${cat.slug}`}
+                                    onClick={() => setIsOpen(false)}
+                                    className="flex flex-row items-center gap-2 px-2 py-3 rounded-lg hover:bg-gray-100 transition-colors"
+                                >
+                                    <span className="text-lg shrink-0">
+                                        {cat.icon}
+                                    </span>
+
+                                    <span className="font-noto text-sm font-medium">
+                                        {cat.nameBn}
+                                    </span>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            {/* Desktop & Tablet Navigation */}
+            <div className="hidden md:block w-full">
+                <div className="w-11/12 lg:w-10/12 mx-auto">
+                    <div className="flex flex-wrap items-center gap-1 lg:gap-2 py-1 font-medium text-sm">
+
+                        {categories.map((cat) => (
+                            <Link
+                                key={cat.id}
+                                href={`/category/${cat.slug}`}
+                                className="shrink-0"
+                            >
+                                <div className="flex items-center py-2 px-2 lg:px-4 border border-transparent hover:border-gray-300 hover:bg-gray-200 rounded-lg transition-colors">
+                                    <span>{cat.icon}</span>
+
+                                    <span className="font-noto ml-2">
+                                        {cat.nameBn}
+                                    </span>
+                                </div>
+                            </Link>
+                        ))}
+
+                    </div>
+                </div>
+            </div>
+
+        </nav>
     );
 };
 
 export default NavLinks;
+

@@ -1,7 +1,7 @@
 
 export default function Loading() {
     return (
-        <div className="w-10/12 mx-auto mt-5 mb-10 animate-pulse">
+        <div className="w-11/12 lg:w-10/12 mx-auto mt-5 mb-10 animate-pulse">
 
             {/* Category Header Skeleton */}
             <div className="bg-white p-5 rounded-3xl flex items-center gap-4 border border-gray-200">

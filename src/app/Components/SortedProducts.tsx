@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Product, toBanglaNumber } from '../ContextAPI';
 import ProductCard from './ProductCard';
@@ -11,11 +12,11 @@ const SortedProducts = ({ products }: Props) => {
     const [sortBy, setSortBy] = useState('default');
     const dropdownRef = useRef<HTMLDetailsElement>(null);
 
-useEffect(() => {
-    if (dropdownRef.current) {
-        dropdownRef.current.open = false;
-    }
-}, []);
+    useEffect(() => {
+        if (dropdownRef.current) {
+            dropdownRef.current.open = false;
+        }
+    }, []);
 
     const sortOptions = [
         { label: 'ডিফল্ট', value: 'default' },
@@ -41,33 +42,29 @@ useEffect(() => {
 
     return (
         <>
-            <section className="flex items-center justify-between">
-                <p className="text-gray-600 text-sm">
+            {/* Product Count & Sorting */}
+            <section className="flex items-center justify-between gap-2">
+                <p className="text-gray-600 text-xs sm:text-sm font-noto">
                     মোট {toBanglaNumber(products.length)}টি পণ্য দেখানো হচ্ছে
                 </p>
 
-                <div className="font-noto flex items-center gap-3">
-                    <label className="text-gray-600 text-sm">
+                <div className="font-noto flex items-center gap-1.5 sm:gap-3 shrink-0">
+                    <label className="text-gray-600 text-xs sm:text-sm">
                         সাজান
                     </label>
 
                     <details ref={dropdownRef} className="dropdown">
                         <summary
-                            className="list-none cursor-pointer group bg-white border border-gray-300
-                            rounded-lg px-4 py-1.5 text-gray-600 text-sm
-                            focus:outline-2 focus:outline-gray-700 focus:outline-offset-2"
+                            className="list-none cursor-pointer group flex items-center justify-between gap-1.5 sm:gap-2 bg-white border border-gray-300 rounded-lg px-2.5 sm:px-4 py-1.5 text-gray-600 text-xs sm:text-sm focus:outline-2 focus:outline-gray-700 focus:outline-offset-2"
                         >
-                            {selectedOption?.label}
+                            <span>{selectedOption?.label}</span>
 
-                            <span className="inline-block ml-2 rotate-90 transition-transform duration-200 group-open:-rotate-90">
+                            <span className="inline-block rotate-90 transition-transform duration-200 group-open:-rotate-90">
                                 ▸
                             </span>
                         </summary>
 
-                        <ul
-                            className="dropdown-content menu bg-white border border-gray-200
-                            rounded-lg z-50 w-max min-w-full p-1 shadow-md mt-3 text-gray-600"
-                        >
+                        <ul className="dropdown-content menu bg-white border border-gray-200 rounded-lg z-50 w-max min-w-full p-1 shadow-md mt-2 text-gray-600 right-0">
                             {sortOptions.map((option) => (
                                 <li key={option.value}>
                                     <button
@@ -82,12 +79,7 @@ useEffect(() => {
                                                 dropdown.open = false;
                                             }
                                         }}
-                                        className={`flex flex-row items-center gap-2 whitespace-nowrap text-sm`}
-                                        // ${
-                                        //     sortBy === option.value
-                                        //         ? 'text-green-700'
-                                        //         : 'text-gray-700'
-                                        // }
+                                        className="flex flex-row items-center gap-2 whitespace-nowrap text-xs sm:text-sm"
                                     >
                                         <span className="w-3 shrink-0">
                                             {sortBy === option.value ? '✓' : ''}
@@ -102,7 +94,8 @@ useEffect(() => {
                 </div>
             </section>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-4 gap-5">
+            {/* Responsive Product Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 mt-3 sm:mt-4 gap-2.5 sm:gap-4 lg:gap-5">
                 {sortedProducts.map((product) => (
                     <ProductCard
                         key={product.id}

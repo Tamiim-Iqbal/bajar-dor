@@ -32,7 +32,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-screen flex flex-col bg-[#f0f5f0]">
         <Header />
-        <Marquee />
         <div className="flex-1">
           {children}
         </div>
