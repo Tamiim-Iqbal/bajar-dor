@@ -8,7 +8,7 @@ const ProductCard = ({ product }: { product: Product }) => {
             href={`/product/${product.slug}`}
             className="block h-full"
         >
-            <div className="h-full bg-white border border-gray-200 p-3 sm:p-4 rounded-xl sm:rounded-2xl transition-colors hover:border-gray-300">
+            <div className="h-full bg-white border border-gray-200 p-3 sm:p-4 rounded-xl sm:rounded-2xl transition-colors hover:border-green-700">
 
                 {/* Image & Name */}
                 <div className="flex gap-2.5 sm:gap-3 items-center min-w-0">
