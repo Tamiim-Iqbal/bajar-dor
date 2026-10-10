@@ -19,16 +19,16 @@ const NavLinks = ({ categories }: NavLinksProps) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <nav className="relative w-auto md:w-full bg-white">
+        <nav className="relative w-auto md:w-full">
 
             {/* Mobile Hamburger */}
-            <div className="md:hidden">
+            <div className="md:hidden bg-[#f0f5f0]">
                 <button
                     type="button"
                     onClick={() => setIsOpen((prev) => !prev)}
                     aria-label={isOpen ? 'মেনু বন্ধ করুন' : 'মেনু খুলুন'}
                     aria-expanded={isOpen}
-                    className="flex items-center justify-center p-2 ml-1 hover:bg-gray-100 border-r border-gray-200 text-gray-600"
+                    className="flex items-center justify-center p-2 ml-1 hover:bg-gray-100  text-gray-600"
                 >
                     {isOpen ? (
                         <X size={24} />
