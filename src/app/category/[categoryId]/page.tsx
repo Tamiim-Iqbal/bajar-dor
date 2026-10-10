@@ -11,7 +11,7 @@ const Page = async ({ params }: PageProps) => {
     const response = await fetch(
         `https://openapi.programming-hero.com/api/bazardor/products?category=${categoryId}`
     );
-
+    //https://openapi.programming-hero.com/api/bazardor/products?category
     const data: Product[] = await response.json();
 
     return (
