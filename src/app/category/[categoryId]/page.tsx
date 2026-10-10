@@ -1,21 +1,22 @@
-import React, { Suspense } from "react";
+
 import { Product, toBanglaNumber } from "../../ContextAPI";
-import ProductCard from "@/app/Components/ProductCard";
 import ProductList from "@/app/Components/SortedProducts";
 
 type PageProps = {
-    params: Promise<{ categoryId: string; }>;
+    params: Promise<{ categoryId: string }>;
 };
 
-const CategoryContent = async ({ params }: PageProps) => {
+const Page = async ({ params }: PageProps) => {
     const { categoryId } = await params;
-    const response = await fetch(`https://api.api-store.workers.dev/api/bazardor/products?category=${categoryId}`,
+
+    const response = await fetch(
+        `https://api.api-store.workers.dev/api/bazardor/products?category=${categoryId}`,
         {
             cache: "force-cache",
         }
     );
+
     const data: Product[] = await response.json();
-    // console.log(data);
 
     return (
         <div className="w-10/12 mx-auto mt-5 mb-10">
@@ -30,7 +31,8 @@ const CategoryContent = async ({ params }: PageProps) => {
                     </h2>
 
                     <p className="text-gray-500">
-                        {toBanglaNumber(data.length)}টি পণ্যের আজকের দাম ও পরিবর্তন
+                        {toBanglaNumber(data.length)}
+                        টি পণ্যের আজকের দাম ও পরিবর্তন
                     </p>
                 </div>
             </div>
@@ -40,12 +42,6 @@ const CategoryContent = async ({ params }: PageProps) => {
             </div>
         </div>
     );
-};
-
-export default function Page({ params }: PageProps) {
-    return (
-        <Suspense fallback={<p className="text-center mt-10">লোড হচ্ছে...</p>}>
-            <CategoryContent params={params} />
-        </Suspense>
-    );
 }
+
+export default Page;
