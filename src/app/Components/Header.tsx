@@ -14,9 +14,7 @@ interface Category {
 
 const Header = async () => {
     const response = await fetch(
-        'https://openapi.programming-hero.com/api/bazardor/categories', {
-        cache: "force-cache"
-    });
+        'https://openapi.programming-hero.com/api/bazardor/categories');
 
     const categories: Category[] = await response.json();
 

@@ -3,11 +3,7 @@ import SortedProducts from '../SortedProducts';
 
 const AllProducts = async () => {
     const response = await fetch(
-        'https://openapi.programming-hero.com/api/bazardor/products',
-        {
-            cache: 'force-cache',
-        }
-    );
+        'https://openapi.programming-hero.com/api/bazardor/products');
 
     const data: Product[] = await response.json();
 

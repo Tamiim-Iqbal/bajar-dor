@@ -9,10 +9,7 @@ const Page = async ({ params }: PageProps) => {
     const { categoryId } = await params;
 
     const response = await fetch(
-        `https://openapi.programming-hero.com/api/bazardor/products?category=${categoryId}`,
-        {
-            cache: "force-cache",
-        }
+        `https://openapi.programming-hero.com/api/bazardor/products?category=${categoryId}`
     );
 
     const data: Product[] = await response.json();
