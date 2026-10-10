@@ -1,13 +1,13 @@
-import React from 'react';
 import { toBanglaNumber } from '../../ContextAPI';
 import ProductCard from '../ProductCard';
-
 import { Product } from '../../ContextAPI';
+import MyDropDown from './MyDropDown';
+import ProductList from './ProductList';
 
-const AllProducts = async() => {
+const AllProducts = async () => {
     const response = await fetch('https://api.api-store.workers.dev/api/bazardor/products',
         {
-            cache:'force-cache'
+            cache: 'force-cache'
         }
     );
     const data: Product[] = await response.json();
@@ -17,13 +17,13 @@ const AllProducts = async() => {
         <div id="সব-পণ্য" className="mt-10">
             <div>
                 <h2 className="text-xl font-semibold">সব পণ্য</h2>
-                <p className="text-gray-500 mt-2">মোট {toBanglaNumber(data.length)}টি পণ্য দেখানো হচ্ছে</p>
+                <div className="flex items-center justify-between">
+                    
+                </div>
             </div>
-            <div className="grid grid-cols-3 mt-4 gap-5">
-            {
-                data.map(product => <ProductCard key={product.id} product={product} />)
-            }
-            </div>
+            
+            <ProductList products={data}></ProductList>
+            
         </div>
     );
 };

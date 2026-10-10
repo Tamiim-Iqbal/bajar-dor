@@ -14,11 +14,11 @@ const ProductCard = ({ product }: { product: Product }) => {
                 </div>
                 <div>
                     <h3 className="font-noto text-lg font-medium">{product.nameBn}</h3>
-                    <p className="font-noto text-gray-500 text-xs">প্রতি {toBanglaUnit(product.unit)}</p>
+                    <p className="font-noto text-gray-600 text-xs">প্রতি {toBanglaUnit(product.unit)}</p>
                 </div>
             </div>
 
-            <p className="mt-3 mb-1 font-noto text-gray-500 text-xs">আজকের দাম</p>
+            <p className="mt-3 mb-1 font-noto text-gray-600 text-xs">আজকের দাম</p>
             {/* Price & PCT */}
             <div className="flex items-center justify-between">
                 <div>
