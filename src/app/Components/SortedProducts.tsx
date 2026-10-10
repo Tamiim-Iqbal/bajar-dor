@@ -1,15 +1,14 @@
-
 'use client';
 
 import React, { useState } from 'react';
-import { Product, toBanglaNumber } from '../../ContextAPI';
-import ProductCard from '../ProductCard';
+import { Product, toBanglaNumber } from '../ContextAPI';
+import ProductCard from './ProductCard';
 
 type Props = {
     products: Product[];
 };
 
-const ProductList = ({ products }: Props) => {
+const SortedProducts = ({ products }: Props) => {
     const [sortBy, setSortBy] = useState('default');
 
     const sortOptions = [
@@ -46,40 +45,43 @@ const ProductList = ({ products }: Props) => {
                         সাজান
                     </label>
 
-                    <div className="dropdown">
-                        <button
-                            type="button"
-                            tabIndex={0}
-                            className="group bg-white border border-gray-300
+                    <details className="dropdown">
+                        <summary
+                            className="list-none cursor-pointer group bg-white border border-gray-300
                             rounded-lg px-4 py-1.5 text-gray-600 text-sm
-                            focus:outline-2 focus:outline-gray-700 focus:outline-offset-2 focus:border-gray-800"
+                            focus:outline-2 focus:outline-gray-700 focus:outline-offset-2"
                         >
                             {selectedOption?.label}
 
-                            <span className="inline-block ml-2 rotate-90 transition-transform duration-200 group-focus:-rotate-90">
+                            <span className="inline-block ml-2 rotate-90 transition-transform duration-200 group-open:-rotate-90">
                                 ▸
                             </span>
-                        </button>
+                        </summary>
 
                         <ul
-                            tabIndex={0}
-                            className="dropdown-content menu
-                                bg-white border border-gray-200
-                                rounded-lg z-50 w-max min-w-full
-                                p-1 shadow-md mt-3"
+                            className="dropdown-content menu bg-white border border-gray-200
+                            rounded-lg z-50 w-max min-w-full p-1 shadow-md mt-3 text-gray-600"
                         >
                             {sortOptions.map((option) => (
                                 <li key={option.value}>
                                     <button
                                         type="button"
-                                        onClick={() => setSortBy(option.value)}
-                                        className={`text-gray-600 flex flex-row items-center
-                                            gap-2 whitespace-nowrap text-sm 
-                                            `}
-                                            // ${sortBy === option.value
-                                            //     ? 'text-green-700'
-                                            //     : 'text-gray-700'
-                                            // }
+                                        onClick={(e) => {
+                                            setSortBy(option.value);
+
+                                            const dropdown =
+                                                e.currentTarget.closest('details');
+
+                                            if (dropdown) {
+                                                dropdown.open = false;
+                                            }
+                                        }}
+                                        className={`flex flex-row items-center gap-2 whitespace-nowrap text-sm`}
+                                        // ${
+                                        //     sortBy === option.value
+                                        //         ? 'text-green-700'
+                                        //         : 'text-gray-700'
+                                        // }
                                     >
                                         <span className="w-3 shrink-0">
                                             {sortBy === option.value ? '✓' : ''}
@@ -90,11 +92,11 @@ const ProductList = ({ products }: Props) => {
                                 </li>
                             ))}
                         </ul>
-                    </div>
+                    </details>
                 </div>
             </section>
 
-            <div className="grid grid-cols-3 mt-4 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-4 gap-5">
                 {sortedProducts.map((product) => (
                     <ProductCard
                         key={product.id}
@@ -106,5 +108,5 @@ const ProductList = ({ products }: Props) => {
     );
 };
 
-export default ProductList;
+export default SortedProducts;
 

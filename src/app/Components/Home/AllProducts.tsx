@@ -2,7 +2,7 @@ import { toBanglaNumber } from '../../ContextAPI';
 import ProductCard from '../ProductCard';
 import { Product } from '../../ContextAPI';
 import MyDropDown from './MyDropDown';
-import ProductList from './ProductList';
+import ProductList from '../SortedProducts';
 
 const AllProducts = async () => {
     const response = await fetch('https://api.api-store.workers.dev/api/bazardor/products',
@@ -18,12 +18,12 @@ const AllProducts = async () => {
             <div>
                 <h2 className="text-xl font-semibold">সব পণ্য</h2>
                 <div className="flex items-center justify-between">
-                    
+
                 </div>
             </div>
-            
+
             <ProductList products={data}></ProductList>
-            
+
         </div>
     );
 };
