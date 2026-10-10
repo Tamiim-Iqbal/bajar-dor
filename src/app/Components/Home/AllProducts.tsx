@@ -3,7 +3,7 @@ import SortedProducts from '../SortedProducts';
 
 const AllProducts = async () => {
     const response = await fetch(
-        'https://api.api-store.workers.dev/api/bazardor/products',
+        'https://openapi.programming-hero.com/api/bazardor/products',
         {
             cache: 'force-cache',
         }

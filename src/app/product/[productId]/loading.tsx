@@ -1,4 +1,3 @@
-
 export default function Loading() {
     return (
         <div className="w-10/12 mx-auto mt-6 mb-10 animate-pulse">

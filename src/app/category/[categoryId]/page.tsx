@@ -9,7 +9,7 @@ const Page = async ({ params }: PageProps) => {
     const { categoryId } = await params;
 
     const response = await fetch(
-        `https://api.api-store.workers.dev/api/bazardor/products?category=${categoryId}`,
+        `https://openapi.programming-hero.com/api/bazardor/products?category=${categoryId}`,
         {
             cache: "force-cache",
         }

@@ -29,7 +29,7 @@ const Page = async ({ params }: PageProps) => {
 
     // Product details fetch
     const response = await fetch(
-        `https://api.api-store.workers.dev/api/bazardor/products/${findProduct.id}`,
+        `https://openapi.programming-hero.com/api/bazardor/products/${findProduct.id}`,
         { cache: "force-cache" }
     );
 
