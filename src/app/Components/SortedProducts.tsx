@@ -1,6 +1,5 @@
 'use client';
-
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Product, toBanglaNumber } from '../ContextAPI';
 import ProductCard from './ProductCard';
 
@@ -10,6 +9,13 @@ type Props = {
 
 const SortedProducts = ({ products }: Props) => {
     const [sortBy, setSortBy] = useState('default');
+    const dropdownRef = useRef<HTMLDetailsElement>(null);
+
+useEffect(() => {
+    if (dropdownRef.current) {
+        dropdownRef.current.open = false;
+    }
+}, []);
 
     const sortOptions = [
         { label: 'ডিফল্ট', value: 'default' },
@@ -45,7 +51,7 @@ const SortedProducts = ({ products }: Props) => {
                         সাজান
                     </label>
 
-                    <details className="dropdown">
+                    <details ref={dropdownRef} className="dropdown">
                         <summary
                             className="list-none cursor-pointer group bg-white border border-gray-300
                             rounded-lg px-4 py-1.5 text-gray-600 text-sm
