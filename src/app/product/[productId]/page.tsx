@@ -12,7 +12,7 @@ const Page = async ({ params }: PageProps) => {
 
     // প্রথমে product list fetch
     const listResponse = await fetch(
-        "https://api.api-store.workers.dev/api/bazardor/products",
+        "https://openapi.programming-hero.com/api/bazardor/products",
         { cache: "force-cache" }
     );
 
