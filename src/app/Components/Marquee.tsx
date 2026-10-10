@@ -6,11 +6,7 @@ import { toBanglaNumber, toBanglaUnit, Product } from '../ContextAPI';
 
 const Marquee = async () => {
     const response = await fetch(
-        'https://api.api-store.workers.dev/api/bazardor/products',
-        {
-            cache: 'force-cache',
-        }
-    );
+        'https://openapi.programming-hero.com/api/bazardor/products' );
 
     const headlines: Product[] = await response.json();
 
