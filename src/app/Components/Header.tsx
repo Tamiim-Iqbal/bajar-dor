@@ -4,6 +4,7 @@ import NavLinks from './NavLinks';
 import Marquee from './Marquee';
 import { Suspense } from "react";
 import BanglaDate from './BanglaDate';
+import UserInfo from './UserInfo';
 
 interface Category {
     id: number;
@@ -60,15 +61,7 @@ const Header = async () => {
                         </Link>
 
                         {/* Auth Buttons */}
-                        <div className="shrink-0 flex items-center gap-1.5 sm:gap-2">
-                            <button className="btn min-h-9 h-9 sm:min-h-10 sm:h-10 text-xs sm:text-sm border-transparent bg-white hover:border-gray-300 hover:bg-gray-200 font-semibold rounded-lg px-2.5 sm:px-5">
-                                সাইন ইন
-                            </button>
-
-                            <button className="btn min-h-9 h-9 sm:min-h-10 sm:h-10 text-xs sm:text-sm button-primary hover:bg-button-primary text-white font-semibold rounded-lg px-2.5 sm:px-5">
-                                সাইন আপ
-                            </button>
-                        </div>
+                        <UserInfo />
                     </div>
                 </header>
 
