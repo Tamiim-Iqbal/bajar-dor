@@ -19,7 +19,6 @@ const AllProducts = async () => {
 
             {/* Product List */}
             <SortedProducts products={data} />
-
         </div>
     );
 };
