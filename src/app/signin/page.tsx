@@ -8,7 +8,14 @@ import { toast } from 'react-hot-toast';
 
 const SignInPage = () => {
 
-    const handleOnSubmit = async(e: React.SubmitEvent<HTMLFormElement>) => {
+    const handleGoogleSignUp = async () => {
+        const resData = await authClient.signIn.social({
+            provider: "google",
+        });
+        console.log("Google Sign Up Response:", resData);
+    };
+
+    const handleOnSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const user = Object.fromEntries(formData.entries()) as {
@@ -24,11 +31,11 @@ const SignInPage = () => {
             callbackURL: "/"
         })
 
-        if(data){
+        if (data) {
             console.log("User signed in successfully:", data);
             toast.success("User signed in successfully!");
         }
-        if(error){
+        if (error) {
             toast.error("Invalid Email or Password");
             console.log("Error signing in user:", error);
         }
@@ -107,7 +114,7 @@ const SignInPage = () => {
 
                     {/* Social Buttons */}
                     <div className="mx-auto w-1/2">
-                        <button
+                        <button onClick={handleGoogleSignUp}
                             type="button"
                             className="flex min-h-10 w-full items-center justify-center gap-2 rounded-lg border border-gray-400 px-3 text-center text-sm font-medium leading-5 text-[#252c26] transition hover:border-gray-100 hover:bg-[#f0f5f0] cursor-pointer"
                         >

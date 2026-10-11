@@ -7,7 +7,7 @@ export default async function BanglaDate() {
     const date = getBanglaDate(new Date());
 
     return (
-        <p className="font-noto text-[10px] sm:text-sm text-gray-500 whitespace-nowrap">
+        <p>
             {date}
         </p>
     );

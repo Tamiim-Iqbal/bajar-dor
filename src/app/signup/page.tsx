@@ -8,7 +8,14 @@ import { toast } from 'react-hot-toast';
 
 const SignUpPage = () => {
 
-    const handleOnSubmit = async(e: React.SubmitEvent<HTMLFormElement>) => {
+    const handleGoogleSignUp = async () => {
+        const resData = await authClient.signIn.social({
+            provider: "google",
+        });
+        console.log("Google Sign Up Response:", resData);
+    };
+
+    const handleOnSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
@@ -20,26 +27,27 @@ const SignUpPage = () => {
         };
         console.log(user);
 
-        const {data, error } = await authClient.signUp.email({
+        const { data, error } = await authClient.signUp.email({
             ...user,
-            callbackURL: "/"
+            callbackURL: "/signin"
         })
 
-        if(user.password !== user.confirmPassword){
+        if (user.password !== user.confirmPassword) {
             toast.error("Password and Confirm Password do not match");
             return;
         }
 
-        if(data){
+        if (data) {
             toast.success("User created successfully!");
             console.log("User created successfully:", data);
-            redirect("/");
+            redirect("/signin");
         }
-        if(error){
+        if (error) {
             toast.error("Something went wrong! Please try again.");
             console.error("Error creating user:", error);
         }
     }
+
     return (
         <div className="font-noto bg-[#f1f5f0] px-2 py-6 sm:py-8">
             <div className="mx-auto w-full max-w-md">
@@ -144,7 +152,7 @@ const SignUpPage = () => {
 
                     {/* Social Buttons */}
                     <div className="mx-auto w-1/2">
-                        <button
+                        <button onClick={handleGoogleSignUp}
                             type="button"
                             className="flex min-h-10 w-full items-center justify-center gap-2 rounded-lg border border-gray-400 px-3 text-center text-sm font-medium leading-5 text-[#252c26] transition hover:border-gray-100 hover:bg-[#f0f5f0] cursor-pointer"
                         >

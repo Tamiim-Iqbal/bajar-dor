@@ -2,12 +2,24 @@ import React from "react";
 import { Product, toBanglaNumber, toBanglaUnit } from "../../ContextAPI";
 import Link from "next/link";
 import { Table } from "@heroui/react";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+
 
 type PageProps = {
     params: Promise<{ productId: string }>;
 };
 
 const Page = async ({ params }: PageProps) => {
+
+    const session = await auth.api.getSession({
+        headers: await headers(),
+    });
+    if (!session?.user) {
+        redirect("/signin");
+    }
+
     const { productId } = await params;
 
     // প্রথমে product list fetch
@@ -55,7 +67,12 @@ const Page = async ({ params }: PageProps) => {
         (a, b) => a.min - b.min
     );
 
+    
+
     return (
+        
+            
+        
         <div className="w-10/12 mx-auto mt-6 mb-10">
             {/* Breadcrumbs */}
             <div className="mb-6">
@@ -317,6 +334,9 @@ const Page = async ({ params }: PageProps) => {
                 </Link>
             </div>
         </div>
+        
+
+        
     );
 };
 
