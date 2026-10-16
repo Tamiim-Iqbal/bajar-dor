@@ -75,7 +75,7 @@ const Header = async () => {
             </div>
 
             {/* Marquee: Desktop only, not sticky */}
-            <div className="hidden md:block">
+            <div>
                 <Marquee />
             </div>
         </>

@@ -19,7 +19,7 @@ const Marquee = async () => {
                 duration={8}
             >
                 {headlines.map((headline) => (
-                    <span
+                    <div
                         key={headline.id}
                         className="inline-flex items-center justify-center whitespace-nowrap border border-l-0 border-t-0 border-gray-100 py-2 px-3 sm:px-5 lg:px-8"
                     >
@@ -54,7 +54,7 @@ const Marquee = async () => {
                                 </span>
                             </span>
                         )}
-                    </span>
+                    </div>
                 ))}
             </MarqueeText>
         </div>
